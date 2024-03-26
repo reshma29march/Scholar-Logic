@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!--====== Title ======-->
+    <title>Manage Professors - Scholar Logic</title>
+    
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header class="header">
+        <nav class="container navbar navbar-expand-lg navbar-light ">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.png" width="190"  class="d-inline-block align-top" alt="">
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="notifications">Notifications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Cards -->
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">ADD PROFESSOR</h1>
+    </div>
+  </div>
+  <section>
+    <div class="container mt-5">
+        <form id="addProfessorForm" method="POST">
+            <div class="form-group">
+                <label for="professorName">Professor Name</label>
+                <input type="text" class="form-control" id="professorName" placeholder="Enter professor name" required>
+            </div>
+            <div class="form-group">
+                <label for="professorEmail">Email</label>
+                <input type="email" class="form-control" id="professorEmail" placeholder="Enter email" required>
+            </div>
+            <div class="form-group">
+                <label for="professorQualification">Qualification</label>
+                <input type="text" class="form-control" id="professorQualification" placeholder="Enter qualification" required>
+            </div>
+            <div class="form-group">
+                <label for="assignedCourses">Assigned Courses</label>
+                <input type="text" class="form-control" id="assignedCourses" placeholder="Enter assigned courses (comma separated)" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+ 
+   <!-- Footer -->
+<footer class="footer mt-5 py-3">
+    <div class="container">
+        <div class="footer-copyright pt-10 pb-25">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="copyright text-md-left text-center pt-15">
+                            <p>© Copyrights <script>document.write(new Date().getFullYear());</script>, Scholar Logic All rights reserved. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="copyright text-md-right text-center pt-15">
+                            <p>Designed by <span>Group3</span> </p>
+                        </div>
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div>
+    </div>
+</footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Font Awesome script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-zVF6FdGvXo6PpFu7L2+T1y7bK/O3RJLZkIr5AH1MTXxaxbVBC9Q9tlILkmRzSh1T7+M6yDVvMtZuijJsV9Xcqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('addProfessorForm');
+    
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+    
+                const professorName = document.getElementById('professorName').value;
+                const professorEmail = document.getElementById('professorEmail').value;
+                const professorQualification = document.getElementById('professorQualification').value;
+                const assignedCourses = document.getElementById('assignedCourses').value;
+    
+                try {
+                    const response = await fetch('/admin/addprofessor.html', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name: professorName,
+                            email: professorEmail,
+                            qualification: professorQualification,
+                            assignedCourses: assignedCourses
+                        })
+                    });
+    
+                    const data = await response.json();
+                    if (data.success) {
+                        alert(data.message); // Display success message
+                        window.location.href = '/admin/manageprofessor.html';
+                    } else {
+                        alert(data.message); // Display error message
+                    }
+                } catch (error) {
+                    console.error('Error adding professor:', error);
+                    alert('An error occurred while adding professor');
+                }
+            });
+        });
+    </script>
+    
+       
+</body>
+</html>

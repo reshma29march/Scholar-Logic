@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!--====== Title ======-->
+    <title>Edit Students - Scholar Logic</title>
+    
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header class="header">
+        <nav class="container navbar navbar-expand-lg navbar-light ">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.png" width="190"  class="d-inline-block align-top" alt="">
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="notifications">Notifications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Cards -->
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">EDIT STUDENT</h1>
+    </div>
+  </div>
+  <section>
+
+    <div class="container mt-5">
+        <form id="editStudentForm" method="POST">
+            <div class="form-group">
+                <label for="studentName">Student Name</label>
+                <input type="text" class="form-control" id="studentName" value="" >
+            </div>
+            <div class="form-group">
+                <label for="studentID">Student ID</label>
+                <input type="text" class="form-control" id="studentID" value="" >
+            </div>
+            <div class="form-group">
+                <label for="coursesEnrolled">Courses Enrolled</label>
+                <input type="text" class="form-control" id="coursesEnrolled" value="" >
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+
+   <!-- Footer -->
+<footer class="footer mt-5 py-3">
+    <div class="container">
+        <div class="footer-copyright pt-10 pb-25">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="copyright text-md-left text-center pt-15">
+                            <p>© Copyrights <script>document.write(new Date().getFullYear());</script>, Scholar Logic All rights reserved. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="copyright text-md-right text-center pt-15">
+                            <p>Designed by <span>Group3</span> </p>
+                        </div>
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div>
+    </div>
+</footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Font Awesome script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-zVF6FdGvXo6PpFu7L2+T1y7bK/O3RJLZkIr5AH1MTXxaxbVBC9Q9tlILkmRzSh1T7+M6yDVvMtZuijJsV9Xcqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const studentId = urlParams.get('id');
+        
+            const editStudentForm = document.getElementById('editStudentForm');
+        
+            // Function to fetch student data and populate form fields
+            function fetchStudentData() {
+                fetch(`/admin/editstudent?id=${studentId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            const student = data.student;
+                            populateFormFields(student);
+                        } else {
+                            console.error('Failed to fetch student data:', data);
+                            alert('Failed to fetch student data');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching student data:', error);
+                        alert('An error occurred while fetching student data');
+                    });
+            }
+    
+            // Function to populate form fields with student data
+            function populateFormFields(student) {
+                document.getElementById('studentName').value = student.name;
+                document.getElementById('studentID').value = student.studentID;
+                document.getElementById('coursesEnrolled').value = student.coursesEnrolled.join(', ');
+            }
+    
+            // Fetch student data and populate form fields when the page loads
+            fetchStudentData();
+        
+            // Event listener for form submission
+            editStudentForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+        
+                const formData = new FormData(this);
+                const formDataJson = {};
+                formData.forEach((value, key) => {
+                    formDataJson[key] = value;
+                });
+        
+                fetch(`/admin/editstudent/${studentId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formDataJson)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Student updated successfully');
+                        // Redirect to the student list page
+                        window.location.href = '/admin/managestudents.html';
+                    } else {
+                        alert('Failed to update student');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error updating student:', error);
+                    alert('An error occurred while updating student');
+                });
+            });
+        });
+    </script>
+    
+    
+</body>
+</html>

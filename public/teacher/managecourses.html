@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>Manage Courses - Scholar Logic</title>
+    
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+<body>
+    <header class="header">
+        <nav class="container navbar navbar-expand-lg navbar-light ">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.png" width="190"  class="d-inline-block align-top" alt="">
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="teacher.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="notifications">Notifications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">MANAGE COURSES</h1>
+    </div>
+  </div>
+  <section>
+    <div class="container mt-5">
+        <div class="mb-3">
+           <a href="addcourse.html">Add Course</a>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table" id="coursesTable">
+                        <thead>
+                            <tr>
+                                <th>Course Code</th>
+                                <th>Course Name</th>
+                                <th>Course Start Date</th>
+                                <th>Course Duration</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer class="footer mt-5 py-3">
+    <div class="container">
+        <div class="footer-copyright pt-10 pb-25">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="copyright text-md-left text-center pt-15">
+                            <p>© Copyrights <script>document.write(new Date().getFullYear());</script>, Scholar Logic All rights reserved. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="copyright text-md-right text-center pt-15">
+                            <p>Designed by <span>Group3</span> </p>
+                        </div>
+                    </div>
+                </div> 
+            </div> 
+        </div>
+    </div>
+</footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-zVF6FdGvXo6PpFu7L2+T1y7bK/O3RJLZkIr5AH1MTXxaxbVBC9Q9tlILkmRzSh1T7+M6yDVvMtZuijJsV9Xcqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('/api/courses');
+                const courses = await response.json();
+    
+                const coursesTable = document.getElementById('coursesTable');
+                const tbody = coursesTable.querySelector('tbody');
+    
+                courses.forEach(course => {
+                    const tr = document.createElement('tr');
+                    tr.classList.add('course-item');
+                    tr.setAttribute('data-id', course._id); // Set data-id attribute with course ID
+    
+                    const tdCode = document.createElement('td');
+                    tdCode.textContent = course.courseCode;
+    
+                    const tdName = document.createElement('td');
+                    tdName.textContent = course.courseName;
+    
+                    const tdStartDate = document.createElement('td');
+                    tdStartDate.textContent = new Date(course.startDate).toLocaleDateString();
+    
+                    const tdDuration = document.createElement('td');
+                    tdDuration.textContent = course.duration;
+    
+                    const tdActions = document.createElement('td');
+    
+                    const deleteButton = document.createElement('button');
+                    deleteButton.type = 'button';
+                    deleteButton.classList.add('btn', 'btn-outline-danger', 'btn-sm', 'delete-button');
+                    deleteButton.title = 'Delete';
+                    const deleteIcon = document.createElement('i');
+                    deleteIcon.classList.add('fas', 'fa-trash-alt');
+                    deleteButton.appendChild(deleteIcon);
+                    deleteButton.addEventListener('click', () => handleDelete(course._id)); 
+    
+                    tdActions.appendChild(deleteButton);
+    
+                    tr.appendChild(tdCode);
+                    tr.appendChild(tdName);
+                    tr.appendChild(tdStartDate);
+                    tr.appendChild(tdDuration);
+                    tr.appendChild(tdActions);
+    
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Error fetching courses:', error);
+            }
+        });
+        const handleDelete = async (courseId) => {
+            try {
+                const response = await fetch(`/api/courses/${courseId}`, {
+                    method: 'DELETE',
+                });
+                if (response.ok) {
+                    const rowToDelete = document.querySelector(`tr[data-id="${courseId}"]`);
+                    if (rowToDelete) {
+                        rowToDelete.remove();
+                    }
+                } else {
+                    console.error('Failed to delete course');
+                }
+            } catch (error) {
+                console.error('Error deleting course:', error);
+            }
+        };
+    </script>
+</body>
+</html>

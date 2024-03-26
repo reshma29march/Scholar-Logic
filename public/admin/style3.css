@@ -1,0 +1,44 @@
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background-color: #ffffff;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+
+        #searchInput {
+            margin-bottom: 20px;
+        }
+
+        .list-group {
+            background-color: #ffffff;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .list-group-item {
+            cursor: pointer;
+        }
+
+        .list-group-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .btn-group-vertical {
+            width: 100%;
+        }
+
+        .btn-group-vertical .btn {
+            width: 100%;
+            margin-bottom: 10px;
+        }

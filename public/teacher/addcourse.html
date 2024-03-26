@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Manage Courses - Scholar Logic</title>
+
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="container navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">
+          <img
+            src="images/logo.png"
+            width="190"
+            class="d-inline-block align-top"
+            alt=""
+          />
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="teacher.html">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="notifications">Notifications</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- Cards -->
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">ADD COURSES</h1>
+      </div>
+    </div>
+    <section>
+      <!-- Content -->
+      <div class="container mb-2 mt-12">
+        <div class="col-lg-6 p-t-20">
+          <div
+            class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width is-upgraded"
+            data-upgraded=",MaterialTextfield"
+          >
+            <input
+              class="mdl-textfield__input"
+              type="text"
+              id="txtCourseName"
+            />
+            <label class="mdl-textfield__label">Course Name</label>
+          </div>
+        </div>
+        <div class="col-lg-6 p-t-20">
+          <div
+            class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width is-upgraded"
+            data-upgraded=",MaterialTextfield"
+          >
+            <input
+              class="mdl-textfield__input"
+              type="text"
+              id="txtCourseCode"
+            />
+            <label class="mdl-textfield__label">Course Code</label>
+          </div>
+        </div>
+        <div class="col-lg-12 p-t-20">
+          <div
+            class="mdl-textfield mdl-js-textfield txt-full-width is-upgraded"
+            data-upgraded=",MaterialTextfield"
+          >
+            <textarea
+              class="mdl-textfield__input"
+              rows="4"
+              id="text7"
+            ></textarea>
+            <label class="mdl-textfield__label" for="text7"
+              >Course Details</label
+            >
+          </div>
+        </div>
+        <div class="col-lg-6 p-t-20">
+          <div
+            class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width is-upgraded"
+            data-upgraded=",MaterialTextfield"
+          >
+            <input
+              class="mdl-textfield__input flatpickr-input"
+              type="text"
+              id="date"
+            />
+            <label class="mdl-textfield__label">Start Date</label>
+          </div>
+        </div>
+        <div class="col-lg-6 p-t-20">
+          <div
+            class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width is-upgraded"
+            data-upgraded=",MaterialTextfield"
+          >
+            <input
+              class="mdl-textfield__input"
+              type="text"
+              id="txtTimeLength"
+            />
+            <label class="mdl-textfield__label">Course Duration</label>
+          </div>
+        </div>
+        <div class="col-lg-6 p-t-20">
+          <div
+            class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width is-upgraded"
+            data-upgraded=",MaterialTextfield"
+          >
+            <input class="mdl-textfield__input" type="text" id="txtPrice" />
+            <label class="mdl-textfield__label">Course Price</label>
+          </div>
+        </div>
+        <div class="col-lg-12 p-t-20 text-center">
+          <button
+            type="submit"
+            class="mdl-button mdl-js-button mdl-button--raised btn-primary"
+            onclick="submitCourse()"
+          >
+            Submit
+          </button>
+          <button
+            type="reset"
+            class="mdl-js-button mdl-button--raised btn-primary"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer mt-auto py-3">
+      <div class="container">
+        <div class="footer-copyright pt-10 pb-25">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="copyright text-md-left text-center pt-15">
+                  <p>
+                    © Copyrights
+                    <script>
+                      document.write(new Date().getFullYear());
+                    </script>
+                    , Scholar Logic All rights reserved.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="copyright text-md-right text-center pt-15">
+                  <p>Designed by <span>Group3</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="main.js"></script>
+
+    <script>
+      function submitCourse() {
+        const courseName = document.getElementById("txtCourseName").value;
+        const courseCode = document.getElementById("txtCourseCode").value;
+        const courseDetails = document.getElementById("text7").value;
+        const startDate = document.getElementById("date").value;
+        const duration = document.getElementById("txtTimeLength").value;
+        const price = document.getElementById("txtPrice").value;
+
+        fetch("/courses", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            courseName: courseName,
+            courseCode: courseCode,
+            details: courseDetails,
+            startDate: startDate,
+            duration: duration,
+            price: price,
+          }),
+        })
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error("Network response was not ok.");
+          })
+          .then((data) => {
+            console.log(data);
+            window.location.href = "managecourses.html";
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--====== Title ======-->
+        <title>Edit Professors - Scholar Logic</title>
+        <!--====== Favicon Icon ======-->
+        <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    </head>
+    <body>
+        <!-- Navigation Bar -->
+        <header class="header">
+            <nav class="container navbar navbar-expand-lg navbar-light ">
+                <a class="navbar-brand" href="#">
+                <img src="images/logo.png" width="190"  class="d-inline-block align-top" alt="">
+                </a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin.html">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="notifications">Notifications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Cards -->
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">EDIT PROFESSOR</h1>
+            </div>
+        </div>
+        <section>
+        <div class="container mt-5">
+            <form id="editProfessorForm" method="POST">
+                <div class="form-group">
+                    <label for="professorName">Professor Name</label>
+                    <input type="text" class="form-control" id="professorName" name="professorName" value="" >
+                </div>
+                <div class="form-group">
+                    <label for="professorEmail">Email</label>
+                    <input type="email" class="form-control" id="professorEmail" name="professorEmail"value="" >
+                </div>
+                <div class="form-group">
+                    <label for="professorQualification">Qualification</label>
+                    <input type="text" class="form-control" id="professorQualification" name="professorQualification" value="" >
+                </div>
+                <div class="form-group">
+                    <label for="assignedCourses">Assigned Courses</label>
+                    <input type="text" class="form-control" id="assignedCourses" name="assignedCourses" value="" >
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </div>
+        <!-- Footer -->
+        <footer class="footer mt-5 py-3">
+            <div class="container">
+                <div class="footer-copyright pt-10 pb-25">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="copyright text-md-left text-center pt-15">
+                                    <p>
+                                        © Copyrights <script>document.write(new Date().getFullYear());</script>, Scholar Logic All rights reserved. 
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="copyright text-md-right text-center pt-15">
+                                    <p>Designed by <span>Group3</span> </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- row -->
+                    </div>
+                    <!-- container -->
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Font Awesome script -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-zVF6FdGvXo6PpFu7L2+T1y7bK/O3RJLZkIr5AH1MTXxaxbVBC9Q9tlILkmRzSh1T7+M6yDVvMtZuijJsV9Xcqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                
+                // Function to extract professor ID from URL
+                function getProfessorIdFromUrl() {
+                    const urlParts = window.location.pathname.split('/'); // Split URL path by '/'
+                    const idIndex = urlParts.findIndex(part => part.includes('.html')); // Find index of part containing '.html'
+                    return urlParts[idIndex + 1]; // Next part after '.html' is the professor ID
+                }
+            
+            
+            const professorId = getProfessorIdFromUrl(); // Get professor ID from URL
+            console.log('Professor ID:', professorId);
+            fetchProfessorData();
+                //const urlParams = new URLSearchParams(window.location.search);
+                //const professorId = urlParams.get('id');
+            
+                //console.log('Fetching professor data...');
+                //const editProfessorForm = document.getElementById('editProfessorForm');
+            
+                // Function to fetch professor data and populate form fields
+                function fetchProfessorData() {
+                    console.log('Fetching professor data...');
+                    fetch(`/admin/editprofessor.html/${professorId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Received professor data:', data);
+                            if (data.success) {
+                                const professor = data.professor;
+                                populateFormFields(professor);
+                            } else {
+                                console.error('Failed to fetch professor data:', data);
+                                alert('Failed to fetch professor data');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching professor data:', error);
+                            alert('An error occurred while fetching professor data');
+                        });
+                }
+            
+            
+            
+                // Function to populate form fields with professor data
+                function populateFormFields(professor) {
+                    console.log('Populating form fields with professor data:', professor);
+                    document.getElementById('professorName').value = professor.name;
+                    document.getElementById('professorEmail').value = professor.email;
+                    document.getElementById('professorQualification').value = professor.qualification;
+                    document.getElementById('assignedCourses').value = professor.assignedCourses.join(', ');
+                }
+            
+            
+                // Fetch professor data and populate form fields when the page loads
+                
+            
+                // Event listener for form submission
+                editProfessorForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+            
+                    const formData = new FormData(this);
+                    const formDataJson = {};
+                    formData.forEach((value, key) => {
+                        formDataJson[key] = value;
+                    });
+            
+                    fetch(`/admin/editprofessor/${professorId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formDataJson)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Professor updated successfully');
+                            // Redirect to the professor list page
+                            window.location.href = '/admin/manageprofessor.html';
+                        } else {
+                            alert('Failed to update professor');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error updating professor:', error);
+                        alert('An error occurred while updating professor');
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

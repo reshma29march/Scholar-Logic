@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Course - Scholar Logic</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="style.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Add Course</h2>
+    <form>
+        <div class="form-group">
+            <label for="courseName">Course Name:</label>
+            <input type="text" class="form-control" id="courseName" placeholder="Enter course name">
+        </div>
+        <div id="subjectFields">
+            <div class="form-group">
+                <label for="subjectName">Subject:</label>
+                <input type="text" class="form-control" name="subjectName" placeholder="Enter subject name">
+            </div>
+            <div id="moduleFields">
+                <div class="form-group">
+                    <label for="moduleName">Module:</label>
+                    <input type="text" class="form-control" name="moduleName" placeholder="Enter module name">
+                </div>
+                <div class="form-group">
+                    <label for="material">Material:</label>
+                    <input type="text" class="form-control" name="material" placeholder="Enter material">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="addModuleField(this)">Add Another Module</button>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="addSubjectField(this)">Add Another Subject</button>
+        </div>
+        <button type="submit" class="btn btn-success mt-3">Submit</button>
+    </form>
+</div>
+
+<script>
+    function addSubjectField(btn) {
+        var subjectFields = document.getElementById('subjectFields');
+        var div = document.createElement('div');
+        div.classList.add('form-group');
+        div.innerHTML = `
+            <label for="subjectName">Subject:</label>
+            <input type="text" class="form-control" name="subjectName" placeholder="Enter subject name">
+            <div class="form-group">
+                <label for="moduleName">Module:</label>
+                <input type="text" class="form-control" name="moduleName" placeholder="Enter module name">
+            </div>
+            <div class="form-group">
+                <label for="material">Material:</label>
+                <input type="text" class="form-control" name="material" placeholder="Enter material">
+            </div>
+            <button type="button" class="btn btn-primary" onclick="addModuleField(this)">Add Another Module</button>
+        `;
+        subjectFields.appendChild(div);
+        btn.remove();
+    }
+
+    function addModuleField(btn) {
+        var moduleFields = btn.parentElement;
+        var div = document.createElement('div');
+        div.classList.add('form-group');
+        div.innerHTML = `
+            <label for="moduleName">Module:</label>
+            <input type="text" class="form-control" name="moduleName" placeholder="Enter module name">
+            <div class="form-group">
+                <label for="material">Material:</label>
+                <input type="text" class="form-control" name="material" placeholder="Enter material">
+            </div>
+            <button type="button" class="btn btn-primary" onclick="addModuleField(this)">Add Another Module</button>
+        `;
+        moduleFields.appendChild(div);
+        btn.remove();
+    }
+</script>
+
+</body>
+</html>

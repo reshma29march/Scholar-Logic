@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!--====== Title ======-->
+    <title>Manage Students - Scholar Logic</title>
+    
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header class="header">
+        <nav class="container navbar navbar-expand-lg navbar-light ">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.png" width="190"  class="d-inline-block align-top" alt="">
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="notifications">Notifications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Cards -->
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">MANAGE STUDENTS</h1>
+    </div>
+  </div>
+  <section>
+
+    <div class="container mt-5">
+        <!-- Search input -->
+        <div class="form-group">
+            <input type="text" class="form-control" id="searchInput" placeholder="Search students">
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Student List -->
+                <div class="table-responsive">
+                    <table class="table" id="studentsTable">
+                        <thead>
+                            <tr>
+                                <th>Sl No</th>
+                                <th>Student Name</th>
+                                <th>Student ID</th>
+                                <th>Courses Enrolled</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Student data will be dynamically inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- Add New Student button -->
+                <a href="addstudent.html" class="btn btn-success btn-block mb-3">Add New Student</a>
+            </div>
+        </div>
+    </div>
+
+   <!-- Footer -->
+<footer class="footer mt-5 py-3">
+    <div class="container">
+        <div class="footer-copyright pt-10 pb-25">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="copyright text-md-left text-center pt-15">
+                            <p>© Copyrights <script>document.write(new Date().getFullYear());</script>, Scholar Logic All rights reserved. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="copyright text-md-right text-center pt-15">
+                            <p>Designed by <span>Group3</span> </p>
+                        </div>
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div>
+    </div>
+</footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Font Awesome script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous"></script>
+
+    <script>
+    // Function to fetch student data from the backend
+    async function fetchStudents() {
+        try {
+            const response = await fetch('/admin/managestudent');
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error fetching students:', error);
+            return [];
+        }
+    }
+
+    // Function to render student data in the table
+    async function renderStudents() {
+        const students = await fetchStudents();
+        const studentsTable = document.getElementById('studentsTable');
+        const tbody = studentsTable.querySelector('tbody');
+        tbody.innerHTML = ''; // Clear existing table rows
+
+        // Populate table rows with student data
+        students.forEach((student, index) => {
+            const row = `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${student.name}</td>
+                    <td>${student.studentID}</td>
+                    <td>${student.coursesEnrolled.join(', ')}</td>
+                    <td>
+                        <button type="button" class="btn btn-outline-primary btn-sm mr-1 edit-button" title="Edit" onclick="editStudent('${student._id}')">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-danger btn-sm delete-button" title="Delete" onclick="deleteStudent('${student._id}')">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+            tbody.insertAdjacentHTML('beforeend', row);
+        });
+    }
+
+    // Function to handle deleting a student
+    async function deleteStudent(studentId) {
+        if (confirm('Are you sure you want to delete this student?')) {
+            try {
+                const response = await fetch(`/admin/deletestudent/${studentId}`, {
+                    method: 'DELETE'
+                });
+                const data = await response.json();
+                if (data.success) {
+                    alert('Student deleted successfully');
+                    // Refresh the student list
+                    renderStudents();
+                } else {
+                    alert('Failed to delete student');
+                }
+            } catch (error) {
+                console.error('Error deleting student:', error);
+                alert('An error occurred while deleting student');
+            }
+        }
+    }
+
+    // Function to handle editing a student
+    async function editStudent(studentId) {
+        if (confirm('Are you sure you want to edit this student?')) {
+            try {
+                window.location.href = `/admin/editstudent/${studentId}`;
+            } catch (error) {
+                console.error('Error editing student:', error);
+                alert('An error occurred while editing student');
+            }
+        }
+    }
+
+    // Call the renderStudents function when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        renderStudents();
+    });
+    </script>
+</body>
+</html>

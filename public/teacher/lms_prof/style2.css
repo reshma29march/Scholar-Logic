@@ -1,0 +1,57 @@
+
+
+/* Deepanshu */
+.jumbotron  {
+    background-image: url('images/assignment1.jpg');
+    background-size: cover;
+    background-position: center;
+    padding-top: 100px;
+    padding-bottom: 150px;
+    
+}
+
+.display-4,
+.lead {
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000;
+    margin-left: -2cm;
+}
+
+.header-top {
+    background-color: #306dd6;;
+    color: white;
+    padding: 10px 0;
+}
+
+.header-contact ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.header-contact ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.header-right ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.header-right ul li {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.header-right .social a {
+    color: white;
+    text-decoration: none;
+}
+
+.header-right .login-register a {
+    color: white;
+    text-decoration: none;
+}

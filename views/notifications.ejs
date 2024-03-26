@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- header part-->
+<%- include('layouts/head'); -%>
+<body>
+
+<!-- Navigation Bar -->
+<%- include('layouts/header'); -%>
+
+
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">NOTIFICATIONS</h1>
+      <p class="lead">Notifications: Be updated with the updates!</p>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <!-- Main Content Section -->
+    <div class="row">
+      <div class="col-md-8">
+        <!-- Notifications Content -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Course Announcements</h5>
+            <!-- Course Announcements Content -->
+            <p>Announcements related to courses go here...</p>
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Assignment Updates</h5>
+            <!-- Assignment Updates Content -->
+            <p>Updates about assignments go here...</p>
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Quiz Notifications</h5>
+            <!-- Quiz Notifications Content -->
+            <p>Notifications about quizzes go here...</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <!-- Image Section -->
+        <img src="images/notification-image.jpg" class="notification-image" alt="Notification Image">
+      </div>
+    </div>
+  </div>
+   
+
+<!-- Footer -->
+<%- include('layouts/footer'); -%>
+
+<!-- Bootstrap JS and dependencies -->
+<%- include('layouts/scripts'); -%>
+
+</body>
+</html>
+

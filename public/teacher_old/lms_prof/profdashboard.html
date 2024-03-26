@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!--====== Title ======-->
+    <title>Scholar Logic - Shaping Bright Minds for Tomorrow's Triumphs</title>
+    
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sidebar.css">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<header class="header">
+    <nav class="container navbar navbar-expand-lg navbar-light ">
+        <a class="navbar-brand" href="index.html">
+            <img src="images/logo.png" width="190"  class="d-inline-block align-top" alt="">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="notifications.html">Notifications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!-- Sidebar -->
+<div class="sidebar-container"> 
+    <div id="remove-scroll" class="left-sidemenu">
+        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 295px;"><ul class="sidemenu  page-header-fixed slimscroll-style" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px; overflow: hidden; width: auto; height: 295px;">
+                <li class="sidebar-toggler-wrapper hide">
+                    <div class="sidebar-toggler">
+                        <span></span>
+                    </div>
+                </li>
+
+                <li class="nav-item start">
+                    <a href="#" class="nav-link nav-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manage_course.html" class="nav-link nav-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <span class="title">Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manage_course.html" class="nav-link nav-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon></svg>
+                    <span class="title">Manage Courses</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="event.html" class="nav-link nav-toggle"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        <span class="title">Schedule</span>
+                    </a>
+                </li>
+         </ul><div class="slimScrollBar" style="background: rgb(158, 165, 171); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 61.1131px;"></div><div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+        </div>
+</div>
+<!-- Content -->
+<div class="row ">
+    <div class="col-xl-3 col-lg-6">
+        <div class="card comp-card">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div class="col mt-0">
+                            <h4 class="info-box-title">Total Students</h4>
+                        </div>
+                        <h3 class="mt-1 mb-3 info-box-title col-green">4,586</h3>
+                        <div class="progress">
+                            <div class="progress-bar l-bg-purple" style="width: 45%"></div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div id="sparkline7"><canvas width="50" height="45" style="display: inline-block; width: 50px; height: 45px; vertical-align: top;"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+        <div class="card comp-card">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div class="col mt-0">
+                            <h4 class="info-box-title">New Courses</h4>
+                        </div>
+                        <h3 class="mt-1 mb-3 info-box-title col-green">589</h3>
+                        <div class="progress">
+                            <div class="progress-bar l-bg-red" style="width: 45%"></div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div id="sparkline12"><canvas width="100" height="45" style="display: inline-block; width: 100px; height: 45px; vertical-align: top;"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+        <div class="card comp-card">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div class="col mt-0">
+                            <h4 class="info-box-title">Course Progress</h4>
+                        </div>
+                        <h3 class="mt-1 mb-3 info-box-title col-green">48</h3>
+                        <div class="progress">
+                            <div class="progress-bar l-bg-green" style="width: 45%"></div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div id="sparkline9"><canvas width="100" height="45" style="display: inline-block; width: 100px; height: 45px; vertical-align: top;"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+		
+		  
+
+<!-- Footer -->
+<footer class="footer mt-auto py-3">
+    <div class="container">
+        <div class="footer-copyright pt-10 pb-25">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="copyright text-md-left text-center pt-15">
+                            <p>© Copyrights <script>document.write(new Date().getFullYear());</script>, Scholar Logic All rights reserved. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="copyright text-md-right text-center pt-15">
+                            <p>Designed by <span>Group3</span> </p>
+                        </div>
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div>
+    </div>
+</footer>
+
+   
+    <!--====== BACK TO TP PART START ======-->
+    
+    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+    
+    <!--====== BACK TO TP PART ENDS ======-->
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

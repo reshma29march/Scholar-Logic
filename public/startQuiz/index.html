@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Scholar Logic - Shaping Bright Minds for Tomorrow's Triumphs</title>
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <div class="header-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="header-contact">
+            <ul>
+              <li>
+                <i class="fa fa-envelope" style="padding-right: 10px"></i
+                ><a href="contact.html" style="color: white"
+                  >conestoga@conestogac.ca</a
+                >
+              </li>
+              <li><i class="fa fa-phone"></i><span>+1 999-999-9999</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="header-right d-flex justify-content-end">
+            <div class="login-register">
+              <ul>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <header class="header">
+    <nav class="container navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="index.html">
+        <img
+          src="images/logo.png"
+          width="190"
+          class="d-inline-block align-top"
+          alt=""
+        />
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="assignments.html">Assignments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="courses.html">Courses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">QUIZ</h1>
+      <p class="lead">Quiz Quest: Test Your Wits, Unleash Your Potential!</p>
+    </div>
+  </div>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div id="studentInfo"></div>
+          <div id="questions"></div>
+          <div id="result" style="display: none; margin-top: 1cm"></div>
+          <button
+            id="downloadPdf"
+            class="btn btn-success"
+            style="display: none; margin-top: 1cm; margin-bottom: 1cm"
+          >
+            Download PDF
+          </button>
+        </div>
+      </div>
+    </div>
+    <footer class="footer mt-auto py-3">
+      <div class="container">
+        <div class="footer-copyright pt-10 pb-25">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="copyright text-md-left text-center pt-15">
+                  <p>
+                    © Copyrights
+                    <script>
+                      document.write(new Date().getFullYear());
+                    </script>
+                    , Scholar Logic All rights reserved.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="copyright text-md-right text-center pt-15">
+                  <p>Designed by <span>Group3</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.14.0/dist/pdf-lib.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

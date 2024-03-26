@@ -1,0 +1,47 @@
+.sidemenu-container {
+    background-color: #ffffff;
+}
+.sidemenu-container .sidemenu, .sidemenu-container-fixed .sidemenu-container:hover .sidemenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.sidemenu > li {
+    display: block;
+    margin: 0;
+    border: 0;
+}
+.sidemenu li > a {
+    position: relative;
+}
+ .sidemenu > li > a > .arrow:before {
+    top: 19px;
+}
+ .sidemenu li > a > .arrow:before {
+    float: right;
+    width: 20px;
+    text-align: center;
+    display: inline;
+    font-size: 12px;
+    font-family: FontAwesome;
+    height: auto;
+    content: "\f105";
+    font-weight: 300;
+    text-shadow: none;
+    position: absolute;
+    top: 4px;
+    right: 14px;
+}
+ .sub-menu {
+    list-style: none;
+    display: none;
+    padding: 0 0 15px 0;
+    margin: 0;
+    background-color: #1e293c;
+}
+
+ .sub-menu li {
+    background: 0 0;
+    margin: 0;
+    padding: 0;
+}

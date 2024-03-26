@@ -1,0 +1,54 @@
+/* Custom CSS */
+body {
+    background-color: #f8f9fa;
+}
+
+.logo-container {
+    margin-top: 50px; /* Adjust top margin as needed */
+}
+
+.logo-container img {
+    width: 150px; /* Adjust size as needed */
+}
+
+.card {
+    background-color: #306dd6; /* Card background color */
+}
+
+.card-title {
+    color: #ffffff; /* Card title color */
+}
+
+.card-text {
+    color: #ffffff; /* Card text color */
+}
+
+.btn-primary {
+    background-color: #021d3a; /* Button background color */
+    border-color: #021d3a; /* Button border color */
+}
+
+.btn-primary:hover {
+ background-color: #fff;
+  border-color: #306dd6;
+  color: #021d3a;
+
+}
+
+.footer {
+    bottom: 0;
+    width: 100%;
+    background-color: #021d3a; /* Footer background color */
+    color: #ffffff; /* Footer text color */
+}
+
+.footer-copyright {
+    background-color: #021d3a;
+}
+.footer-copyright .copyright p {
+    color: #fff;
+    margin-bottom: 0px;
+}
+.footer-copyright .copyright p span {
+    font-weight: 600;
+}
