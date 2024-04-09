@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <!--====== Title ======-->
-    <title>Manage Courses - Scholar Logic</title>
+    <title>Manage Programs - Scholar Logic</title>
     
     <!--====== Favicon Icon ======-->
     <link rel="shortcut icon" href="images/favicon.png" type="image/png">
@@ -22,6 +22,7 @@
 
 </head>
 <body>
+    <!-- Navigation Bar -->
     <header class="header">
         <nav class="container navbar navbar-expand-lg navbar-light ">
             <a class="navbar-brand" href="#">
@@ -49,70 +50,36 @@
     </div>
   </div>
   <section>
-<div class="container mt-5">
-    <!-- Search input -->
-    <div class="form-group">
-        <input type="text" class="form-control" id="searchInput" placeholder="Search programs">
-    </div>
-    <div class="row">
-        <div class="col-md-8">
-            <!-- Program List -->
-            <ul class="list-group" id="programList">
-                <!-- Headings -->
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-light">
-                    <span class="font-weight-bold">Sl No</span>
-                    <span class="font-weight-bold">Program</span>
-                    <span class="font-weight-bold">Action</span>
-                </li>
-                <!-- Sample program names -->
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span class="badge badge-primary badge-pill">1</span> Program 1
-                    <div>
-                        <button type="button" class="btn btn-outline-primary btn-sm mr-1">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-danger btn-sm">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span class="badge badge-primary badge-pill">2</span> Program 2
-                    <div>
-                        <button type="button" class="btn btn-outline-primary btn-sm mr-1">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-danger btn-sm">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span class="badge badge-primary badge-pill">3</span> Program 3
-                    <div>
-                        <button type="button" class="btn btn-outline-primary btn-sm mr-1">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-danger btn-sm">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </div>
-                </li>
-                <!-- Add more programs dynamically or fetch from database -->
-            </ul>
-        </div>
-        <div class="col-md-4">
-            <!-- Add New Program button -->
-            <a href="" class="btn btn-success btn-block mb-3">Add New Program</a>
-            <!-- Help or Instructions -->
-            
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Program List -->
+                <div class="table-responsive">
+                    <table class="table" id="programsTable">
+                        <thead>
+                            <tr>
+                                <th>Sl No</th>
+                                <th>Program Name</th>
+                                <th>Program Code</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Program data will be dynamically inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- Add New Program button -->
+                <a href="addprogram.html" class="btn btn-success btn-block mb-3">Add New Program</a>
+                
+            </div>
         </div>
     </div>
-</div>
 
-
-
-<!-- Footer -->
+   <!-- Footer -->
 <footer class="footer mt-5 py-3">
     <div class="container">
         <div class="footer-copyright pt-10 pb-25">
@@ -134,25 +101,94 @@
     </div>
 </footer>
 
-<!-- Bootstrap JS and dependencies -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="main.js"></script>
-
-<script>
-    // Function to filter courses based on search input
-    function filterCourses() {
-        var input, filter, ul, li, courseName, i;
-        input = document.getElementById('searchInput');
-        filter = input.value.toUpperCase();
-        ul = document.getElementById("courseList");
-        li = ul.getElementsByTagName('li');
-
-        for (i = 0; i < li.length; i++) {
-            courseName = li[i].innerText;
-            if (courseName.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
-            }
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Font Awesome script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-zVF6FdGvXo6PpFu7L2+T1y7bK/O3RJLZkIr5AH1MTXxaxbVBC9Q9tlILkmRzSh1T7+M6yDVvMtZuijJsV9Xcqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+    // Function to fetch program data from the backend
+    async function fetchPrograms() {
+        try {
+            const response = await fetch('/admin/manageprogram');
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error fetching programs:', error);
+            return [];
         }
     }
+
+    // Function to render program data in the table
+    async function renderPrograms() {
+        const programs = await fetchPrograms();
+        const programsTable = document.getElementById('programsTable');
+        const tbody = programsTable.querySelector('tbody');
+        tbody.innerHTML = ''; // Clear existing table rows
+
+        // Populate table rows with program data
+        programs.forEach((program, index) => {
+            const row = `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${program.program_name}</td>
+                    <td>${program.program_code}</td>
+                    <td>
+                        <button type="button" class="btn btn-outline-primary btn-sm mr-1 edit-button" title="Edit" onclick="editProgram('${program._id}')">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-danger btn-sm delete-button" title="Delete" onclick="deleteProgram('${program._id}')">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+            tbody.insertAdjacentHTML('beforeend', row);
+        });
+    }
+
+
+    
+// Function to handle deleting a program
+async function deleteProgram(programId) {
+            if (confirm('Are you sure you want to delete this program?')) {
+                try {
+                    const response = await fetch(`/admin/deleteprogram/${programId}`, {
+                        method: 'DELETE'
+                    });
+                    const data = await response.json();
+                    if (data.success) {
+                        alert('Program deleted successfully');
+                        // Refresh the program list
+                        renderPrograms();
+                    } else {
+                        alert('Failed to delete program');
+                    }
+                } catch (error) {
+                    console.error('Error deleting program:', error);
+                    alert('An error occurred while deleting program');
+                }
+            }
+        }
+
+// Function to handle deleting a program
+async function editProgram(programId) {
+    if (confirm('Are you sure you want to edit this program?')) {
+        try {
+            window.location.href = `/admin/editprogram.html/${programId}`;
+        } catch (error) {
+            console.error('Error editing program:', error);
+            alert('An error occurred while editing program');
+        }
+    }
+}
+
+        // Call the renderPrograms function when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPrograms();
+        });
+</script>
+
+</body>
+</html>

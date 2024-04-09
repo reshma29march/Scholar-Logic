@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Include header and navigation bar -->
+<%- include('layouts/head') %>
+<body>
+
+<!-- Include header -->
+<%- include('layouts/header') %>
+
+<!-- Payment Form -->
+<div class="container mt-5">
+    <h2>Make a Payment</h2>
+    <form action="/process-payment" method="POST">
+        <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input type="text" class="form-control" id="amount" name="amount" required>
+        </div>
+        <div class="form-group">
+            <label for="cardNumber">Card Number:</label>
+            <input type="text" class="form-control" id="cardNumber" name="cardNumber" required>
+        </div>
+        <div class="form-group">
+            <label for="expiry">Expiry:</label>
+            <input type="text" class="form-control" id="expiry" name="expiry" required>
+        </div>
+        <div class="form-group">
+            <label for="cvv">CVV:</label>
+            <input type="text" class="form-control" id="cvv" name="cvv" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Payment</button>
+    </form>
+</div>
+
+<!-- Include footer -->
+<%- include('layouts/footer') %>
+
+<!-- Include Bootstrap JS and dependencies -->
+<%- include('layouts/scripts') %>
+
+</body>
+</html>
